@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th=http://thymeleaf.org>
+<head>
+	<title>ChatMaster</title>
+	<script type="text/javascript">
+	let user = sessionStorage.getItem('user')
+	if (user === null) {
+		let userName = prompt('Hey! What is your name?')
+		while (userName === '') {
+			userName = prompt('Hey! What is your name?')
+		}
+		sessionStorage.setItem('user', userName);
+
+			
+			fetch("/welcome/createNewUser", {
+				method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: userName
+			})
+			.then((userEntity) => userEntity.json())
+			.then((data) => {sessionStorage.setItem("user", JSON.stringify(data))});
+	} else {
+		user = JSON.parse(sessionStorage.getItem("user"))
+	} 
+	
+
+	</script>
+</head>
+<body>
+	<div>
+		<h1>Join A Channel</h1>
+	</div>
+	<div th:each="channel : ${channels}">
+	  	<div>
+          <a th:href="@{channel/{channelId}(channelId = ${channel.channelId})}">
+              <span th:text="${channel.channelName}"></span><br/>
+          </a>
+        </div>
+	</div>
+    <br/>
+    <form action="/welcome/createNewChannel" method="post">
+        <div>
+            <h4>Do you want to enjoy your very own <b>CHANNEL</b>?</h4>
+        </div>
+        <div>
+            Enter your new channel name: <input type="text" th:field="${channel.channelName}"/>
+        </div>
+        <div>
+            <input type="submit" value="Create my new Channel"/> 
+        </div>
+    </form>
+</body>
+</html>
