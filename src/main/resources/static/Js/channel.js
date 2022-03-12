@@ -10,7 +10,7 @@ submitBttn.addEventListener('click', () => {
         messageSender : userId,
         messageText : messageToBePosted.value,
         channelId : channelId,
-        userId = userId
+        userId : userId
     }
     fetch("/channel/createMessage", {
         method: "POST",
@@ -22,4 +22,19 @@ submitBttn.addEventListener('click', () => {
     .then((message) => message.json())
     .then((message) => {console.log(message)})
 })
+
+function getMessages() {
+    fetch('/channel/{channekId}/getMessages', {
+        method: "POST",
+        headers: {"Content-Type": "application/json"}
+        .then((response) => response.json())
+        .then((messages) => function (messages) {
+
+        })
+    })
+}
+
+function addMesages(messages) {
+    var messageCenter = documnet.querySelector("#messageCenter")
+}
  
