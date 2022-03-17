@@ -1,5 +1,5 @@
-var submitBttn = document.querySelector("#submitButton")
-var messageToBePosted = document.querySelector("#messageCreation")
+var submitBttn = document.getElementById('submitButton')
+var messageToBePosted = document.getElementById('messageCreation')
 var userId = user.userId;
 var channelId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
 console.log(channelId)
@@ -32,7 +32,7 @@ function getMessages() {
     
 
 function addMessages(messages) {
-    var messageCenter = document.querySelector("#messageCenter")
+    var messageCenter = document.getElementById("messageCenter")
     messageCenter.innerHTML = ''
     for(var i = 0; i < messages.length; i++) {
         var div = document.createElement('div')
