@@ -1,14 +1,15 @@
 var submitBttn = document.getElementById('submitButton')
 var messageToBePosted = document.getElementById('messageCreation')
 var userId = user.userId;
-var channelId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1)
+var channelId = window.location.href.substring(window.location.href.lastIndexOf('/') + 1, queryString.length)
+var userName = user.userName
 console.log(channelId)
 
 messageToBePosted.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
+    if (e.keyCode === 13) {
     console.log('posting message')
     let message = {
-        messageSender : userId,
+        senderName : userName,
         messageText : messageToBePosted.value,
         channelId : channelId,
         userId : userId
@@ -24,7 +25,7 @@ messageToBePosted.addEventListener('keypress', function (e) {
     .then((message) => {console.log(message)})
 }})
 
-setInterval(getMessages(), 1000)
+setInterval(getMessages, 500)
 
 function getMessages() {
     fetch('/channel/${channelId}/getMessages')
@@ -39,6 +40,7 @@ function addMessages(messages) {
     for(var i = 0; i < messages.length; i++) {
         var div = document.createElement('div')
         div.innerHTML = messages[i].messageSender + ":" + messages[i].messageText;
+		messageCenter.appendChild(div);
     }
 }
  
