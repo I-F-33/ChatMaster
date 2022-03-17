@@ -24,6 +24,8 @@ messageToBePosted.addEventListener('keypress', function (e) {
     .then((message) => {console.log(message)})
 }})
 
+setInterval(getMessages(), 1000)
+
 function getMessages() {
     fetch('/channel/${channelId}/getMessages')
         .then((response) => response.json())
