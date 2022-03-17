@@ -60,21 +60,16 @@ public class ChatMasterController {
 		return "channel";
 	}
 	
-	@PostMapping("/channel/{channelId}/postMessage")
-	@ResponseBody
-	public void createMessage(@RequestBody MessageDTO messageDto) {
-		messageService.createMessage(messageDto);
-	}
 	
-	@GetMapping("/channel/{channelId}/getMessages")
+	@PostMapping("/channel/{channelId}/getMessages")
 	@ResponseBody
-	public List<Message> fetchAllMessages(@PathVariable Long channelId) {
-		return messageService.findAll();
+	public List<MessageDTO> fetchAllMessages(@PathVariable Long channelId) {
+		return messageService.findAllByChannelId(channelId);
 	}
 	
 	@PostMapping("/channel/{channelId}/createMessage")
 	@ResponseBody
-	public Message createNewMessage(@PathVariable Long channelId, @RequestBody MessageDTO message) {
+	public Message createNewMessage(@RequestBody MessageDTO message) {
 	 return messageService.createMessage(message);
 	}
 }
