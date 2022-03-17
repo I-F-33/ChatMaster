@@ -20,7 +20,7 @@
 			.then((userEntity) => userEntity.json())
 			.then((data) => {sessionStorage.setItem("user", JSON.stringify(data))});
 	} else {
-		user = JSON.parse(sessionStorage.setItem("user"))
+		user = JSON.parse(sessionStorage.getItem("user"))
 	} 
 	
 

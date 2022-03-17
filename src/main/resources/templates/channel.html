@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th=http://Thymeleaf.org>
 <head>
-  <title>ChatMaster</title>
-  <script>
+<title>ChatMaster</title>
+<script>
       user = sessionStorage.getItem('user')
       if (user === null) {
           window.location.replace("/welcome")
@@ -12,12 +12,11 @@
   </script>
 </head>
 <body>
-    <div id="messageCenter">
-    </div>
-    <div>
-        <label for="chatMaster">Enter message:</label>
-        <textarea name="chatMaster" id="messageCreation" cols="50" rows="4"></textarea>
-    </div>
-    <script src="/ChatMaster/src/main/resources/static/Js/channel.js" type="text/javascript"></script>
+	<div id="messageCenter"></div>
+	<div style="position: relative; float: right">
+		<label for="chatMaster">Enter message:</label>
+		<textarea name="chatMaster" id="messageCreation" cols="100" rows="1"></textarea>
+	</div>
+	<script type="text/javascript" src="/Js/channel.js"></script>
 </body>
 </html>

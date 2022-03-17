@@ -61,15 +61,14 @@ public class ChatMasterController {
 	}
 	
 	
-	@PostMapping("/channel/{channelId}/getMessages")
+	@GetMapping("/channel/{channelId}/getMessages")
 	@ResponseBody
 	public List<MessageDTO> fetchAllMessages(@PathVariable Long channelId) {
 		return messageService.findAllByChannelId(channelId);
 	}
 	
 	@PostMapping("/channel/{channelId}/createMessage")
-	@ResponseBody
-	public Message createNewMessage(@RequestBody MessageDTO message) {
+	public @ResponseBody Message createNewMessage(@RequestBody MessageDTO message) {
 	 return messageService.createMessage(message);
 	}
 }
